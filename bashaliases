@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#Aliases
+alias editrc='vim ~/.bashaliases'
+alias sourcerc='source ~/.bashrc'
+alias purge='sudo apt-get purge'
+alias iwant='sudo apt-get install'
+alias autoremove='sudo apt-get autoremove'
+alias sorry='sudo $(history -p !!)'
+alias tmux='tmux -u'
+alias chx='chmod +x'
+alias sizeof='ls -sh'
+
+
+#Functions
+function cd(){
+    cdstring=$1
+    if [[ $1 == "//" ]]; then
+        cdstring=".."
+    elif [[ $1 == ",," ]]; then
+        cdstring=".."
+    elif [[ $1 =~ [\.]{2,} ]]; then
+        (( count = `expr length $1` - 1 ))
+        cdstring=$(yes "../" | head -n $count | tr -d '[:space:]')
+    fi
+    builtin cd $cdstring && ls
+}
+
+function sedremove(){
+    sed -i 's/$1//g' $2
+}
+
+function ppjson(){
+    cat $1 | python -m json.tool
+}
+
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+#Exports
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
+
+
+export PS1="\[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
