@@ -3,3 +3,9 @@ apt install curl vim
 mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 mv vimrc ~/.vimrc
+
+
+#also move the bashaliases and set it up in bashrc
+mv bashaliases ~/.bashaliases
+echo "source ~/.bashaliases" >> ~/.bashrc
+source ~/.bashrc
