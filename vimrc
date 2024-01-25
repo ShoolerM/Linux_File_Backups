@@ -33,7 +33,7 @@ xnoremap $ :norm ^<C-r>=len('#')<CR>x<CR>
 "c-style block commenter, in normal mode type \c on a visually
 "selected block to encase in a formated c-style block comment rectangle
 if has('python3')
-    xnorempa <silent> <Leader>c :'<,'>!python3 ~/.vim/scripts/cpp_comment_formatter.py<CR>
+    xnoremap <silent> <Leader>c :!python3 ~/.vim/scripts/cpp_comment_formatter.py<CR>
 endif
 
 "Code folding with space
