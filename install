@@ -1,0 +1,22 @@
+#!/bin/bash
+sudo apt install -y curl vim clang-format git tmux ctags
+mkdir -p ~/.vim/autoload ~/.vim/bundle ~/.vim/scripts/ && \
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+#Move files in to directories
+mv vimrc ~/.vimrc
+mv cpp_formatter.py ~/.vim/scripts/
+
+#Now you can just type ctags to generate a ctags file anywhere (:
+mv ctags ~/.ctags
+
+
+#also move the bashaliases and set it up in bashrc
+mv bashaliases ~/.bashaliases
+echo "source ~/.bashaliases" >> ~/.bashrc
+source ~/.bashrc
+
+
+#Add packages for pathogen to infect
+git clone https://github.com/ervandew/supertab.git ~/.vim/bundle/supertab
+git clone https://github.com/vim-airline/vim-airline ~/.vim/bundle/vim-airline
