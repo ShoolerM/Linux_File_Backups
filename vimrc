@@ -124,7 +124,22 @@ endif
 
 
 """""""""""""""""""""""""""""""ETC""""""""""""""""""""""""""""""
+"NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n>     :NERDTree<CR>
+nnoremap <C-t>     :NERDTreeToggle<CR>
+nnoremap <C-f>     :NERDTreeFind<CR>
+    "Autostart NERDTree
+autocmd VimEnter * NERDTree | wincmd p
+    "If it's just NERDtree, close vim
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
+"ALE
+noremap <Leader>a :ALEToggle<CR>
+
+"Supertab
+let g:SuperTabDefaultCompletionType = "context"
+setglobal complete+=d
 
 "Backups
 set backup
@@ -133,10 +148,6 @@ set backupskip=/tmp/*
 set directory=~/.vimbaks,/tmp,.
 set writebackup
 
-
-"Supertab settings
-let g:SuperTabDefaultCompletionType = "context"
-setglobal complete+=d
 
 "Set up pathogen and SuperTab when time permits
 "execute pathogen#infect()
